@@ -106,7 +106,7 @@ class LoginFragment : Fragment() {
             if (authAccountTask.isSuccessful) {
 
                 val authAccount = authAccountTask.result
-                    Toast.makeText(requireContext(),"Id Token:"+ authAccount.idToken, Toast.LENGTH_SHORT).show() // id ile giris yapilinca gelecek id Token
+                   // Toast.makeText(requireContext(),"Id Token:"+ authAccount.idToken, Toast.LENGTH_SHORT).show() // id ile giris yapilinca gelecek id Token
                 //    Toast.makeText(this,"serverAuthCode:" + authAccount.authorizationCode, Toast.LENGTH_SHORT).show() // authorizationCode ile giris yapilinca gelecek serverAuthCode
 
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
