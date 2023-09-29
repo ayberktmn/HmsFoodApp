@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Food App</string>
+    <string name="continuewithhuawei">Continue With Huawei</string>
+    <string name="sample_account_description">Account Usage Process</string>
+    <string name="sign_in">ID-Token Mode Signln</string>
+    <string name="sign_out">SignOut</string>
+    <string name="revokeAccess">AuthorizationCode Mode Signln</string>
+    <string name="silent_sign_in">Silent SignIn</string>
+    <string name="cancel_authorization">Cancel Authorization</string>
+    <string name="welcome">Hos Geldiniz!</string>
+    <string name="idtoken">Id Token:</string>
+    <string name="AuthorizationCode">Authorization Code:</string>
+    <string name="Silentsignin">Silent Signin:</string>
+    <string name="Location">Location Updates:</string>
+    <string name="pharmacy">Pharmacy</string>
+</resources>
