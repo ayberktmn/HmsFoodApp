@@ -123,8 +123,8 @@ class LoginFragment : Fragment() {
         val task : Task<AuthAccount> = service.silentSignIn()
 
         task.addOnSuccessListener { authAccount ->
-            //   Toast.makeText(this,"SuccesSilentSignin:"+ authAccount.displayName, Toast.LENGTH_SHORT).show()  // giris yapildiktan sonra eger cikis yapilmadiysa kullanici adiyle girilince gelen mesaj
-
+               Toast.makeText(requireContext(),"SuccesSilentSignin:"+ authAccount.displayName, Toast.LENGTH_SHORT).show()  // giris yapildiktan sonra eger cikis yapilmadiysa kullanici adiyle girilince gelen mesaj
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
         task.addOnFailureListener { e ->
 

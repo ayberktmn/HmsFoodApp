@@ -19,7 +19,7 @@ class FavoriteRecyclerAdapter(private val FavoriteFoodList:ArrayList<Meal>) : Re
 
         private lateinit var db : RoomDataBase
         private lateinit var adventDao: DataDao
-    private var livedata : List<Meal>? = null
+        private var livedata : List<Meal>? = null
 
 
         class FoodFavoriHolder (val binding : PopulerItemBinding): RecyclerView.ViewHolder(binding.root) {

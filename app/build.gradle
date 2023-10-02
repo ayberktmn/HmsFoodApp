@@ -134,4 +134,5 @@ dependencies {
     implementation ("com.huawei.hms:maps:6.11.0.304")
     implementation ("com.huawei.hms:scan:2.12.0.300")
     implementation("com.huawei.hms:site:6.5.1.301")
+    implementation("com.huawei.hms:ads-lite:13.4.66.300")
 }

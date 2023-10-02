@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.compose.runtime.currentCompositeKeyHash
 import androidx.core.graphics.green
 import androidx.fragment.app.viewModels
@@ -18,6 +19,9 @@ import com.ayberk.foodapp.Models.Food.RandomFood
 import com.ayberk.foodapp.ViewModel.RandomFoodVM
 import com.ayberk.foodapp.databinding.FragmentFoodDescriptionBinding
 import com.bumptech.glide.Glide
+import com.huawei.hms.ads.AdListener
+import com.huawei.hms.ads.AdParam
+import com.huawei.hms.ads.InterstitialAd
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +35,7 @@ class FoodDescriptionFragment : Fragment() {
     private val binding get() = _binding!!
     lateinit var resultList : Meal
     private val viewModel : RandomFoodVM by viewModels()
+    private var interstitialAd: InterstitialAd? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +60,62 @@ class FoodDescriptionFragment : Fragment() {
             }
 
         },1200)
+
+        interstitialAd = InterstitialAd(requireContext())
+        // "testb4znbuh3n2" is a dedicated test ad unit ID. Before releasing your app, replace the test ad unit ID with the formal one.
+        interstitialAd!!.adId = "testb4znbuh3n2"
+        loadInterstitialAd()
+        interstitialAd!!.adListener = adListener
         return view
+    }
+
+    private fun loadInterstitialAd() {
+        // Load an interstitial ad.
+        val adParam = AdParam.Builder().build()
+        interstitialAd!!.loadAd(adParam)
+    }
+
+    private fun showInterstitialAd() {
+        // Display the ad.
+        if (interstitialAd != null && interstitialAd!!.isLoaded) {
+            interstitialAd!!.show(requireActivity())
+        } else {
+            Toast.makeText(requireContext(), "Ad did not load", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
+    private val adListener: AdListener = object : AdListener() {
+        override fun onAdLoaded() {
+            // Called when an ad is loaded successfully.
+
+            showInterstitialAd()
+        }
+        override fun onAdFailed(errorCode: Int) {
+            // Called when an ad fails to be loaded.
+
+        }
+        override fun onAdClosed() {
+            // Called when an ad is closed.
+
+        }
+        override fun onAdClicked() {
+            // Called when an ad is clicked.
+
+        }
+        override fun onAdLeave() {
+            // Called when an ad leaves an app.
+
+        }
+        override fun onAdOpened() {
+            // Called when an ad is opened.
+
+        }
+        override fun onAdImpression() {
+            // Called when an ad impression occurs.
+
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
