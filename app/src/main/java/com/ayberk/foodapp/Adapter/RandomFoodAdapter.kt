@@ -42,6 +42,7 @@ class RandomFoodAdapter : RecyclerView.Adapter<RandomFoodAdapter.MyFood>() {
             Glide.with(binding.imgFood)
                 .load(data.strMealThumb)
                 .centerInside()
+                .centerCrop()
                 .into(binding.imgFood)
         }
     }

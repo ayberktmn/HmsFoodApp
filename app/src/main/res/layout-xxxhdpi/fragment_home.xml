@@ -10,16 +10,16 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="69dp"
-        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcylerCategory"
-        android:layout_width="399dp"
-        android:layout_height="261dp"
+        android:layout_width="383dp"
+        android:layout_height="262dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="2dp"
@@ -47,7 +47,7 @@
         android:layout_width="208dp"
         android:layout_height="42dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="32dp"
         android:text="Yemek Önerisi"
         android:textAlignment="center"
         android:textColor="#000000"
@@ -60,8 +60,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcylerFood"
-        android:layout_width="383dp"
-        android:layout_height="297dp"
+        android:layout_width="376dp"
+        android:layout_height="272dp"
         android:layout_marginTop="12dp"
         android:foregroundGravity="center"
         app:layout_constraintEnd_toEndOf="parent"
