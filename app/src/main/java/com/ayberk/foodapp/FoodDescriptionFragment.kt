@@ -89,7 +89,6 @@ class FoodDescriptionFragment : Fragment() {
     private val adListener: AdListener = object : AdListener() {
         override fun onAdLoaded() {
             // Called when an ad is loaded successfully.
-
             showInterstitialAd()
         }
         override fun onAdFailed(errorCode: Int) {

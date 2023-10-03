@@ -7,8 +7,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="358dp"
-        android:layout_height="259dp"
+        android:layout_width="360dp"
+        android:layout_height="204dp"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,8 +17,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="278dp"
-            android:layout_height="196dp"
+            android:layout_width="255dp"
+            android:layout_height="148dp"
             android:layout_gravity="center"
             app:cardCornerRadius="15dp">
 
@@ -34,7 +34,7 @@
         <TextView
             android:id="@+id/txtFood"
             android:layout_width="match_parent"
-            android:layout_height="61dp"
+            android:layout_height="55dp"
             android:gravity="center"
             android:text="TextView"
             android:textColor="#B50404"
