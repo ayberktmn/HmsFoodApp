@@ -21,7 +21,7 @@ class FavoriteFragment : Fragment() {
 
     private lateinit var db: RoomDataBase
     private lateinit var adventDao: DataDao
-   private var _binding : FragmentFavoriteBinding? = null
+    private var _binding : FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -37,7 +37,7 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        db = Room.databaseBuilder(requireContext().applicationContext, RoomDataBase::class.java, "Meal")
+        db = Room.databaseBuilder(requireContext(), RoomDataBase::class.java, "Meal")
             .allowMainThreadQueries()
             .build()
         adventDao = db.dataDao()

@@ -47,7 +47,6 @@ class HomeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         binding.rcylerFood.layoutManager = layoutManager
 
-
         viewModel.getCategoriesLiveData().observe(viewLifecycleOwner, Observer { t ->
             t?.let {
                 categoriesAdapter.setCategoriesList(t.categories)
@@ -57,7 +56,6 @@ class HomeFragment : Fragment() {
         viewModel.getFoodLiveData().observe(viewLifecycleOwner, Observer { t ->
             t?.let {
                 adapter.setFoodList(t.meals)
-
                 Handler(Looper.getMainLooper()).postDelayed({
                     fetchRandomFood()
                 }, 6000)
@@ -65,7 +63,6 @@ class HomeFragment : Fragment() {
         })
         return view
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -89,6 +86,11 @@ class HomeFragment : Fragment() {
 
                 R.id.populer -> {
                     Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_populerFragment)
+                    true
+                }
+
+                R.id.map -> {
+                    Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_mapFragment)
                     true
                 }
 

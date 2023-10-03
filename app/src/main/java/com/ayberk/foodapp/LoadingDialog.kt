@@ -9,8 +9,8 @@ class LoadingDialog(val myfragment:Fragment) {
 
     fun startLoading(){
 
-        val infalter = myfragment.layoutInflater
-        val dialogView = infalter.inflate(R.layout.loading_item,null)
+        val inflater = myfragment.layoutInflater
+        val dialogView = inflater.inflate(R.layout.loading_item,null)
 
         val bulider = AlertDialog.Builder(myfragment.requireContext())
         bulider.setView(dialogView)

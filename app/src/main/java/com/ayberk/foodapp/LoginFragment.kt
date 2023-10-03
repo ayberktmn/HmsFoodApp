@@ -124,7 +124,7 @@ class LoginFragment : Fragment() {
 
         task.addOnSuccessListener { authAccount ->
                Toast.makeText(requireContext(),"SuccesSilentSignin:"+ authAccount.displayName, Toast.LENGTH_SHORT).show()  // giris yapildiktan sonra eger cikis yapilmadiysa kullanici adiyle girilince gelen mesaj
-            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+              findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
         task.addOnFailureListener { e ->
 
