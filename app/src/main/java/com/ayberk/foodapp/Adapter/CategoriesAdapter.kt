@@ -33,6 +33,7 @@ class CategoriesAdapter: RecyclerView.Adapter<CategoriesAdapter.MyCategories>() 
             binding.txtCategories.text = data.strCategory
             Glide.with(binding.imgCategories)
                 .load(data.strCategoryThumb)
+                //.centerInside()
                 .centerCrop()
                 .into(binding.imgCategories)
         }

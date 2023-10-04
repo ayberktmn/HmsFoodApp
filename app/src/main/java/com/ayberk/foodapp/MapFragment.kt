@@ -43,7 +43,10 @@ class MapFragment : Fragment() {
 
         binding.btnLocation.setOnClickListener {
             requestLocationPermission()
-            requestLocationUpdates()
+        }
+
+        binding.btnLocationRemove.setOnClickListener {
+            removeLocationUpdatesWithCallback()
         }
         return view
     }
@@ -59,13 +62,13 @@ class MapFragment : Fragment() {
 
                     Toast.makeText(
                         requireContext(),
-                        "LocationX" + locationResult.lastLocation.latitude.toString(),
+                        "LocationX: " + locationResult.lastLocation.latitude.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
 
                     Toast.makeText(
                         requireContext(),
-                        "LocationY" + locationResult.lastLocation.longitude.toString(),
+                        "LocationY: " + locationResult.lastLocation.longitude.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -118,6 +121,36 @@ class MapFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        }
+    }
+    private fun removeLocationUpdatesWithCallback() {
+        try {
+            fusedLocationProviderClient.removeLocationUpdates(mLocationCallback)
+            .addOnSuccessListener {
+                    Toast.makeText(
+                        requireContext(),
+                        "Lokasyon Durduruldu",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(
+                        requireContext(),
+                        "Lokasyon Durdurulamadi",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    Log.e(
+                        TAG,
+                        "removeLocationUpdatesWithCallback onFailure:${e.message}"
+                    )
+                }
+        } catch (e: Exception) {
+            Toast.makeText(
+                requireContext(),
+                "Hata",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }
