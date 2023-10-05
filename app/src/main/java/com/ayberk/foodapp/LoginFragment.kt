@@ -48,14 +48,8 @@ class LoginFragment : Fragment() {
         binding.accountSilentSignin.setOnClickListener {
             silentsignin()
         }
-        binding.accountSignout.setOnClickListener {
-            signOut()
-        }
         binding.accountSignInCode.setOnClickListener {
             startActivityForResult(serviceAuth.signInIntent, 8888)
-        }
-        binding.cancelAuthorization.setOnClickListener {
-            showCancelAuthorizationConfirmationDialog()
         }
     }
 
@@ -135,7 +129,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    fun signOut(){
+   /* fun signOut(){
         val authParams : AccountAuthParams = AccountAuthParamsHelper(AccountAuthParams.DEFAULT_AUTH_REQUEST_PARAM).createParams()
         val service : AccountAuthService = AccountAuthManager.getService(requireContext(), authParams)
         val signOutTask = service.signOut()
@@ -143,9 +137,9 @@ class LoginFragment : Fragment() {
         signOutTask.addOnCompleteListener { it ->
             Toast.makeText(requireContext(),"SignOut Complete", Toast.LENGTH_SHORT).show()
         }
-    }
+    } */
 
-    private fun cancelAuthorization() {
+  /* private fun cancelAuthorization() {
         val authParams : AccountAuthParams = AccountAuthParamsHelper(AccountAuthParams.DEFAULT_AUTH_REQUEST_PARAM).createParams()
         val service : AccountAuthService = AccountAuthManager.getService(requireContext(), authParams)
         val task = service.cancelAuthorization()
@@ -157,9 +151,9 @@ class LoginFragment : Fragment() {
             Toast.makeText(requireContext(),"CancelAuthorization Failed", Toast.LENGTH_SHORT).show()
 
         }
-    }
+    } */
 
-    private fun showCancelAuthorizationConfirmationDialog() {
+  /*  private fun showCancelAuthorizationConfirmationDialog() {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
         alertDialogBuilder.setTitle("Cikis")
         alertDialogBuilder.setMessage("Cikis yapmak istediğinize emin misiniz?")
@@ -185,7 +179,7 @@ class LoginFragment : Fragment() {
         }
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()
-    }
+    }  */
 
 
     override fun onDestroyView() {

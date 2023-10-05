@@ -10,7 +10,7 @@
         android:id="@+id/huaweiIdAuthorizationButton"
         android:layout_width="243dp"
         android:layout_height="53dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="64dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,13 +20,14 @@
         android:id="@+id/textView"
         android:layout_width="212dp"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="72dp"
         android:gravity="center"
         android:text="@string/continuewithhuawei"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -65,7 +66,6 @@
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="168dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/huawei"
         android:drawableLeft="@drawable/hwid_auth_button_round_white"
@@ -73,35 +73,6 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_signout" />
-
-    <Button
-        android:id="@+id/account_signout"
-        style="@style/ButtonStyle"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="116dp"
-        android:background="@drawable/huawei"
-        android:drawableLeft="@drawable/hwid_auth_button_round_white"
-        android:text="@string/sign_out"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cancel_authorization" />
-
-    <Button
-        android:id="@+id/cancel_authorization"
-        style="@style/ButtonStyle"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/huawei"
-        android:drawableLeft="@drawable/hwid_auth_button_round_white"
-        android:text="@string/cancel_authorization"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_signInCode" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
