@@ -29,6 +29,12 @@
                 tools:src="@tools:sample/avatars" />
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -76,7 +82,7 @@
                 android:textColor="#FF5722"
                 android:textSize="18sp" />
         </LinearLayout>
-
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
     <TextView
@@ -86,28 +92,27 @@
         android:layout_marginStart="6dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="14dp"
-        android:layout_marginBottom="32dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="#BA0505"
         android:textSize="22sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="351dp"
-        android:layout_height="435dp"
+        android:layout_width="355dp"
+        android:layout_height="335dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="1dp"
         android:scrollbarSize="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/txtFoodName">
 
         <LinearLayout
             android:layout_width="match_parent"
