@@ -10,7 +10,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="283dp"
         android:layout_height="168dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="32dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
