@@ -6,8 +6,8 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_width="156dp"
-        android:layout_height="155dp"
+        android:layout_width="155dp"
+        android:layout_height="162dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
@@ -36,7 +36,7 @@
                 android:layout_height="43dp"
                 android:layout_gravity="bottom|right"
                 android:foregroundGravity="right"
-                app:srcCompat="@drawable/like" />
+                app:srcCompat="@drawable/favorite" />
 
         </androidx.cardview.widget.CardView>
 

@@ -15,10 +15,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresPermission
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.ayberk.foodapp.databinding.FragmentMapBinding
 import com.huawei.hms.location.FusedLocationProviderClient
 import com.huawei.hms.location.LocationCallback
@@ -57,16 +59,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private var mLocationCallback: LocationCallback? = null
     private val binding get() = _binding!!
     private var hMap: HuaweiMap? = null
-
     private var mMapView: MapView? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMapBinding.inflate(inflater, container, false)
-        val view = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         checkPermissions()
+        MapsInitializer.initialize(requireContext())
         val mapViewBundle: Bundle? = null
         var mSupportMapFragment: SupportMapFragment? = null
         mSupportMapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
@@ -76,9 +74,16 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mMapView?.apply {
             onCreate(mapViewBundle)
             getMapAsync(this@MapFragment)
-        }
-        MapsInitializer.initialize(requireContext())
 
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentMapBinding.inflate(inflater, container, false)
+        val view = binding.root
         return view
     }
 
@@ -120,15 +125,17 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         request.language = "tr"
         request.pageIndex = 1
         request.pageSize = 10
-        request.query = "Food"  //yemek salonu arar
-        request.radius = 5000   //5 km civarini tarar
+
+        request.query = "FOOD"
+        request.radius = 5000 // 5 km civarini tarar
+        request.poiType = LocationType.FOOD
+
 
         val resultListener: SearchResultListener<NearbySearchResponse?> =
             object : SearchResultListener<NearbySearchResponse?> {
                 override fun onSearchResult(results: NearbySearchResponse?) {
                     val sites = results!!.sites
                     if (results == null || results.totalCount <= 0 || sites == null || sites.size <= 0) {
-                        Toast.makeText(requireContext(), "Yemek salonlari bulunuyor...", Toast.LENGTH_SHORT).show()
                         return
                     }
                     for (site in sites) {
@@ -136,14 +143,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                             val latLng = LatLng(site.location.lat, site.location.lng)
                             val title = site.name ?: ""
                             val snippet = site.formatAddress ?: ""
-
                             // Create a MarkerOptions for the location
                             val options = MarkerOptions()
                                 .position(latLng)
                                 .title(title)
                                 .snippet(snippet)
-                                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.cutlery))
-                            // Add the marker to the map
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.food))
                             hMap?.addMarker(options)
 
                         }
@@ -199,12 +204,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_WIFI_STATE])
     override fun onMapReady(map: HuaweiMap) {
         hMap = map
-        // Enable the my-location layer.
         hMap!!.isMyLocationEnabled = true
-        // Enable the my-location icon.
-        Toast.makeText(requireContext(), "Harita Yükleniyor...", Toast.LENGTH_SHORT).show()
         getLocation()
+        Toast.makeText(requireContext(), "Harita Yükleniyor...", Toast.LENGTH_SHORT).show()
         hMap!!.uiSettings.isMyLocationButtonEnabled = true
+
 
     }
 }

@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="337dp"
-        android:layout_height="245dp"
+        android:layout_width="335dp"
+        android:layout_height="230dp"
         android:layout_marginTop="32dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,8 +104,8 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="310dp"
-        android:layout_height="255dp"
+        android:layout_width="300dp"
+        android:layout_height="240dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="1dp"

@@ -42,7 +42,7 @@ class PopulerAdapter(meals: ArrayList<Meal>) : RecyclerView.Adapter<PopulerAdapt
 
         if (dataDao.checkIfDataExists(idMeal) > 0) {
             // Veritabanında veri varsa, image görüntülenecek
-            holder.imagelike.setImageResource(R.drawable.like)
+            holder.imagelike.setImageResource(R.drawable.favorite)
             holder.imagelike.isClickable = false
         } else {
             // Veritabanında veri yoksa, image gizlenecek

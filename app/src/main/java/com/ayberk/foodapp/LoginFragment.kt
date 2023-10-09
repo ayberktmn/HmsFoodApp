@@ -32,8 +32,6 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getToken()
@@ -52,6 +50,23 @@ class LoginFragment : Fragment() {
         }
         binding.accountSignInCode.setOnClickListener {
             startActivityForResult(serviceAuth.signInIntent, 8888)
+        }
+
+        val task = service!!.silentSignIn()
+        task.addOnSuccessListener { authAccount -> // The silent sign-in is successful. Process the returned AuthAccount object to obtain the HUAWEI ID information.
+           // dealWithResultOfSignIn(authAccount)
+            authAccount.displayName
+        }
+        task.addOnFailureListener { e -> // The silent sign-in fails. Your app will call getSignInIntent() to show the authorization or sign-in screen.
+            if (e is ApiException) {
+                val apiException = e
+             //   val signInIntent = service!!.getSignInIntent()
+                // If your app appears in full screen mode when a user tries to sign in, that is, with no status bar at the top of the device screen, add the following parameter in the intent:
+                // intent.putExtra(CommonConstant.RequestParams.IS_FULL_SCREEN, true)
+                // Check the details in this FAQ.
+             //   signInIntent.putExtra(CommonConstant.RequestParams.IS_FULL_SCREEN, true)
+              //  startActivityForResult(signInIntent, REQUEST_CODE_SIGN_IN)
+            }
         }
     }
 
