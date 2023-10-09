@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapFragment">
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnLocation"
-        android:layout_width="176dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="52dp"
-        android:text="@string/Location_update"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnLocationRemove"
-        android:layout_width="178dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="112dp"
-        android:backgroundTint="#E13C3C"
-        android:text="@string/Location_remove"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.huawei.hms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.huawei.hms.maps.MapView>
+</LinearLayout>

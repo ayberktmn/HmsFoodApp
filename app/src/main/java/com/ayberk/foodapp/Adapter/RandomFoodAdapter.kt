@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.ayberk.foodapp.HomeFragmentDirections
 import com.ayberk.foodapp.Models.Food.Meal
 import com.ayberk.foodapp.R
 import com.ayberk.foodapp.databinding.FoodItemBinding

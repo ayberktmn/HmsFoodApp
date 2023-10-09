@@ -23,17 +23,9 @@
             android:id="@+id/action_homeFragment_to_foodDescriptionFragment"
             app:destination="@id/foodDescriptionFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_populerFragment"
-            app:destination="@id/populerFragment" />
-        <action
             android:id="@+id/action_homeFragment_self"
             app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/foodDescriptionFragment"

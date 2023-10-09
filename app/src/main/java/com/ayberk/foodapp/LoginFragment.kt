@@ -32,6 +32,8 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getToken()
@@ -117,8 +119,8 @@ class LoginFragment : Fragment() {
         val task : Task<AuthAccount> = service.silentSignIn()
 
         task.addOnSuccessListener { authAccount ->
+               findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                Toast.makeText(requireContext(),"SuccesSilentSignin:"+ authAccount.displayName, Toast.LENGTH_SHORT).show()  // giris yapildiktan sonra eger cikis yapilmadiysa kullanici adiyle girilince gelen mesaj
-              findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
         task.addOnFailureListener { e ->
 

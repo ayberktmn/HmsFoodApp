@@ -1,30 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapFragment">
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnLocationRemove"
-        android:layout_width="177dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#E13C3C"
-        android:text="@string/Location_remove"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLocation" />
-
-    <Button
-        android:id="@+id/btnLocation"
-        android:layout_width="184dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/Location_update"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.huawei.hms.maps.MapView
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        map:cameraTargetLat="51"
+        map:cameraTargetLng="10"
+        map:cameraZoom="8.5"
+        map:mapType="normal"
+        map:uiCompass="true"
+        map:uiZoomControls="true" />
+</LinearLayout>

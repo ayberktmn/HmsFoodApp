@@ -75,22 +75,22 @@ class HomeFragment : Fragment() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {-
                 R.id.home -> {
-                    Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_self)
+                    Navigation.findNavController(binding.root).navigate(R.id.homeFragment)
                     true
                 }
 
                 R.id.favorie -> {
-                    Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_favoriteFragment)
+                    Navigation.findNavController(binding.root).navigate(R.id.favoriteFragment)
                     true
                 }
 
                 R.id.populer -> {
-                    Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_populerFragment)
+                    Navigation.findNavController(binding.root).navigate(R.id.populerFragment)
                     true
                 }
 
                 R.id.map -> {
-                    Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_mapFragment)
+                    Navigation.findNavController(binding.root).navigate(R.id.mapFragment)
                     true
                 }
 
