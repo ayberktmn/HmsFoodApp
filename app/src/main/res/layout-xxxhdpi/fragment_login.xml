@@ -6,73 +6,99 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".LoginFragment">
 
-    <com.huawei.hms.support.hwid.ui.HuaweiIdAuthButton
-        android:id="@+id/huaweiIdAuthorizationButton"
-        android:layout_width="243dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="64dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
     <TextView
         android:id="@+id/textView"
-        android:layout_width="212dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="72dp"
+        android:layout_width="216dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="120dp"
         android:gravity="center"
         android:text="@string/continuewithhuawei"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="197dp"
-        android:layout_height="216dp"
-        android:layout_marginStart="97dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="97dp"
+        android:layout_width="82dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_silent_signin"
         app:srcCompat="@drawable/huawei" />
 
     <Button
         android:id="@+id/account_signInCode"
         style="@style/ButtonStyle"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
+        android:layout_width="273dp"
+        android:layout_height="69dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/huawei"
+        android:background="@drawable/borderbutton"
         android:drawableLeft="@drawable/hwid_auth_button_round_white"
         android:text="@string/revokeAccess"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/huaweiIdAuthorizationButton" />
 
+    <com.huawei.hms.support.hwid.ui.HuaweiIdAuthButton
+        android:id="@+id/huaweiIdAuthorizationButton"
+        android:layout_width="277dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
     <Button
         android:id="@+id/account_silent_signin"
         style="@style/ButtonStyle"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
+        android:layout_width="270dp"
+        android:layout_height="60dp"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
-        android:background="@drawable/huawei"
+        android:background="@drawable/borderbutton"
         android:drawableLeft="@drawable/hwid_auth_button_round_white"
         android:text="@string/silent_sign_in"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_signInCode" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="152dp"
+        android:layout_height="157dp"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="141dp"
+        android:src="@drawable/burger"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="134dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/Foodapp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,8 @@
 package com.ayberk.foodapp
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
-import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
@@ -14,14 +10,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Switch
-import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresPermission
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
 import com.ayberk.foodapp.databinding.FragmentMapBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.huawei.hms.location.FusedLocationProviderClient
 import com.huawei.hms.location.LocationCallback
 import com.huawei.hms.location.LocationRequest
@@ -61,10 +54,15 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private var hMap: HuaweiMap? = null
     private var mMapView: MapView? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        MapsInitializer.initialize(requireContext())
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         checkPermissions()
-        MapsInitializer.initialize(requireContext())
+
         val mapViewBundle: Bundle? = null
         var mSupportMapFragment: SupportMapFragment? = null
         mSupportMapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
@@ -74,9 +72,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mMapView?.apply {
             onCreate(mapViewBundle)
             getMapAsync(this@MapFragment)
-
         }
     }
+    
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -84,6 +82,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     ): View? {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
         val view = binding.root
+
         return view
     }
 

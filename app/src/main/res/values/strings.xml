@@ -17,4 +17,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Location_update">Lokasyonumu Bul</string>
     <string name="Location_remove">Lokasyonumu Durdur</string>
+    <string name="Kullanici_adi">Kullanici Adi :</string>
+    <string name="user_Name">User name</string>
+    <string name="Foodapp">Food App</string>
+
 </resources>

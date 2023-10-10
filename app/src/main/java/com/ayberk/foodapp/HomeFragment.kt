@@ -94,6 +94,11 @@ class HomeFragment : Fragment() {
                     true
                 }
 
+                R.id.profile -> {
+                    Navigation.findNavController(binding.root).navigate(R.id.profileFragment)
+                    true
+                }
+
                 else -> {
 
                 }

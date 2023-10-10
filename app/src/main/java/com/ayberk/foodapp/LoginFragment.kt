@@ -51,25 +51,7 @@ class LoginFragment : Fragment() {
         binding.accountSignInCode.setOnClickListener {
             startActivityForResult(serviceAuth.signInIntent, 8888)
         }
-
-        val task = service!!.silentSignIn()
-        task.addOnSuccessListener { authAccount -> // The silent sign-in is successful. Process the returned AuthAccount object to obtain the HUAWEI ID information.
-           // dealWithResultOfSignIn(authAccount)
-            authAccount.displayName
-        }
-        task.addOnFailureListener { e -> // The silent sign-in fails. Your app will call getSignInIntent() to show the authorization or sign-in screen.
-            if (e is ApiException) {
-                val apiException = e
-             //   val signInIntent = service!!.getSignInIntent()
-                // If your app appears in full screen mode when a user tries to sign in, that is, with no status bar at the top of the device screen, add the following parameter in the intent:
-                // intent.putExtra(CommonConstant.RequestParams.IS_FULL_SCREEN, true)
-                // Check the details in this FAQ.
-             //   signInIntent.putExtra(CommonConstant.RequestParams.IS_FULL_SCREEN, true)
-              //  startActivityForResult(signInIntent, REQUEST_CODE_SIGN_IN)
-            }
-        }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -134,9 +116,9 @@ class LoginFragment : Fragment() {
         val task : Task<AuthAccount> = service.silentSignIn()
 
         task.addOnSuccessListener { authAccount ->
-               findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-               Toast.makeText(requireContext(),"SuccesSilentSignin:"+ authAccount.displayName, Toast.LENGTH_SHORT).show()  // giris yapildiktan sonra eger cikis yapilmadiysa kullanici adiyle girilince gelen mesaj
-        }
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            }
+
         task.addOnFailureListener { e ->
 
             if (e is ApiException) {
@@ -145,59 +127,6 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
-   /* fun signOut(){
-        val authParams : AccountAuthParams = AccountAuthParamsHelper(AccountAuthParams.DEFAULT_AUTH_REQUEST_PARAM).createParams()
-        val service : AccountAuthService = AccountAuthManager.getService(requireContext(), authParams)
-        val signOutTask = service.signOut()
-
-        signOutTask.addOnCompleteListener { it ->
-            Toast.makeText(requireContext(),"SignOut Complete", Toast.LENGTH_SHORT).show()
-        }
-    } */
-
-  /* private fun cancelAuthorization() {
-        val authParams : AccountAuthParams = AccountAuthParamsHelper(AccountAuthParams.DEFAULT_AUTH_REQUEST_PARAM).createParams()
-        val service : AccountAuthService = AccountAuthManager.getService(requireContext(), authParams)
-        val task = service.cancelAuthorization()
-        task.addOnSuccessListener {
-            Toast.makeText(requireContext(),"CancelAuthorization Success", Toast.LENGTH_SHORT).show()
-
-        }
-        task.addOnFailureListener { e ->
-            Toast.makeText(requireContext(),"CancelAuthorization Failed", Toast.LENGTH_SHORT).show()
-
-        }
-    } */
-
-  /*  private fun showCancelAuthorizationConfirmationDialog() {
-        val alertDialogBuilder = AlertDialog.Builder(requireContext())
-        alertDialogBuilder.setTitle("Cikis")
-        alertDialogBuilder.setMessage("Cikis yapmak istediğinize emin misiniz?")
-        alertDialogBuilder.setIcon(R.drawable.huawei)
-
-        val NegativeButtonText = "Hayır"
-        val NegativeButtonTextSpannable = SpannableString(NegativeButtonText)
-        NegativeButtonTextSpannable.setSpan(
-            ForegroundColorSpan(Color.RED), // Kırmızı renk
-            0,
-            NegativeButtonText.length,
-            0
-        )
-
-        alertDialogBuilder.setPositiveButton("Evet") { _, _ ->
-            // İptal işlemi onaylandı
-            cancelAuthorization()
-        }
-
-        alertDialogBuilder.setNegativeButton(NegativeButtonTextSpannable) { dialog, _ ->
-            // İptal işlemi iptal edildi, dialog'u kapat
-            dialog.dismiss()
-        }
-        val alertDialog = alertDialogBuilder.create()
-        alertDialog.show()
-    }  */
-
 
     override fun onDestroyView() {
         super.onDestroyView()
