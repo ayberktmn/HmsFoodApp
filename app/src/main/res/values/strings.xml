@@ -20,5 +20,11 @@
     <string name="Kullanici_adi">Kullanici Adi :</string>
     <string name="user_Name">User name</string>
     <string name="Foodapp">Food App</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="belirtilmemis">Belirtilmemis</string>
+    <string name="emailbelirtilmemis">E-Mail adresi Belirtilmemis</string>
+    <string name="Premiumhesap">Premium Satin Al</string>
 
 </resources>
