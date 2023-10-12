@@ -74,11 +74,6 @@ class ProfileFragment : Fragment() {
             if (e is ApiException) {
                 val apiException = e
                 //   val signInIntent = service!!.getSignInIntent()
-                // If your app appears in full screen mode when a user tries to sign in, that is, with no status bar at the top of the device screen, add the following parameter in the intent:
-                // intent.putExtra(CommonConstant.RequestParams.IS_FULL_SCREEN, true)
-                // Check the details in this FAQ.
-                //   signInIntent.putExtra(CommonConstant.RequestParams.IS_FULL_SCREEN, true)
-                //  startActivityForResult(signInIntent, REQUEST_CODE_SIGN_IN)
             }
         }
         binding.btnSignout.setOnClickListener {
@@ -87,8 +82,8 @@ class ProfileFragment : Fragment() {
         binding.btnCancel.setOnClickListener {
             showCancelAuthorizationConfirmationDialog()
         }
-        binding.btnPremium.setOnClickListener {
-            loadProduct()
+        binding.btnPremiumFragment.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_premiumAccountFragment)
         }
         return view
     }
@@ -146,46 +141,5 @@ class ProfileFragment : Fragment() {
           val alertDialog = alertDialogBuilder.create()
           alertDialog.show()
       }
-
-    private fun loadProduct() {
-        // Obtain in-app product details configured in AppGallery Connect, and then show the products.
-        val iapClient = Iap.getIapClient(requireContext())
-        val task =iapClient.obtainProductInfo(createProductInfoReq())
-        task.addOnSuccessListener { result ->
-            if (result != null && !result.productInfoList.isEmpty()) {
-
-            }
-        }.addOnFailureListener { e ->
-            e.message?.let { Log.e("IAP", it) }
-            if (e is IapApiException) {
-                val returnCode = e.statusCode
-                if (returnCode == OrderStatusCode.ORDER_HWID_NOT_LOGIN) {
-                    Toast.makeText(requireContext(), "Please sign in to the app with a HUAWEI ID.", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun createProductInfoReq(): ProductInfoReq? {
-        // In-app product type contains:
-        // 0: consumable.
-        // 1: non-consumable.
-        // 2: auto-renewable subscription.
-        val req = ProductInfoReq()
-        req?.let { productDetails ->
-            productDetails.priceType = IapClient.PriceType.IN_APP_CONSUMABLE
-
-            val productIds = ArrayList<String>()
-            // Pass in the item_productId list of products to be queried.
-            // The product ID is the same as that you set during product information configuration in AppGallery Connect.
-            productIds.add("Consumable_1")
-            productDetails.productIds = productIds
-        }
-        return req
-    }
 }
 

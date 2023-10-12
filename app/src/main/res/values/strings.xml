@@ -26,5 +26,9 @@
     <string name="belirtilmemis">Belirtilmemis</string>
     <string name="emailbelirtilmemis">E-Mail adresi Belirtilmemis</string>
     <string name="Premiumhesap">Premium Satin Al</string>
+    <string name="Premiumfragment">Premium Hesaba Gecis</string>
+    <string name="premiumprice">0.00</string>
+    <string name="textPremiumgecis">Reklamlari gormek istemiyorsan,Premium hesaba gec</string>
+    <string name="premiumgecildi">Premium hesaba gecildi</string>
 
 </resources>
