@@ -18,6 +18,7 @@ import com.ayberk.foodapp.databinding.FragmentPopulerBinding
 import com.ayberk.foodapp.databinding.FragmentProfileBinding
 import com.bumptech.glide.Glide
 import com.huawei.hmf.tasks.Task
+import com.huawei.hms.ads.Gender
 import com.huawei.hms.common.ApiException
 import com.huawei.hms.iap.Iap
 import com.huawei.hms.iap.IapApiException
@@ -56,18 +57,22 @@ class ProfileFragment : Fragment() {
         task.addOnSuccessListener { authAccount ->
             val username = authAccount.displayName
             val photo = authAccount.avatarUri
-            val gender = authAccount.gender
-            val email = authAccount.email
+
+            if (authAccount.gender == Gender.MALE){
+                binding.txtGender.text = "Male"
+            }else if (authAccount.gender == Gender.FEMALE){
+                binding.txtGender.text = "Female"
+            }else{
+                binding.txtGender.text = "Unknow"
+            }
+
 
             Glide.with(binding.imgUser)
                 .load(photo)
                 .circleCrop()
                 .into(binding.imgUser)
             binding.txtUserName.text = username
-          //  binding.txtEmail.text = email
 
-            println("gender:${gender}")
-            println("gelen email:${email}")
 
         }
         task.addOnFailureListener { e -> // The silent sign-in fails. Your app will call getSignInIntent() to show the authorization or sign-in screen.

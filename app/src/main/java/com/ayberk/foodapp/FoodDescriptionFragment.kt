@@ -68,10 +68,6 @@ class FoodDescriptionFragment : Fragment() {
         // "testb4znbuh3n2" is a dedicated test ad unit ID. Before releasing your app, replace the test ad unit ID with the formal one.
         interstitialAd!!.adId = "testb4znbuh3n2"
         loadInterstitialAd()
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            isBackPressed = true
-
-        }
         interstitialAd!!.adListener = adListener
         return view
     }

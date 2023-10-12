@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#BCD9F1"
     tools:context=".FoodDescriptionFragment">
 
     <LinearLayout
@@ -33,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
+            android:backgroundTint="#BDD9F1"
             app:cardCornerRadius="10dp">
 
             <LinearLayout

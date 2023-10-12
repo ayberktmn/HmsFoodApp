@@ -1,6 +1,8 @@
 package com.ayberk.foodapp
 
 import android.app.Activity
+import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
@@ -21,11 +23,14 @@ import com.huawei.hms.ads.BannerAdSize
 import com.huawei.hms.iap.Iap
 import com.huawei.hms.iap.IapApiException
 import com.huawei.hms.iap.IapClient
+import com.huawei.hms.iap.entity.ConsumeOwnedPurchaseReq
+import com.huawei.hms.iap.entity.InAppPurchaseData
 import com.huawei.hms.iap.entity.OrderStatusCode
 import com.huawei.hms.iap.entity.ProductInfoReq
 import com.huawei.hms.iap.entity.PurchaseIntentReq
 import com.huawei.secure.android.common.encrypt.aes.CipherUtil
 import org.bouncycastle.asn1.pkcs.PKCSObjectIdentifiers.data
+import org.json.JSONException
 
 class PremiumAccountFragment : Fragment() {
 
@@ -44,7 +49,6 @@ class PremiumAccountFragment : Fragment() {
         val view = binding.root
 
         binding.btnPremium.setOnClickListener {
-
             val productId: String = data?.id.toString()
             gotoPay(this@PremiumAccountFragment, productId, IapClient.PriceType.IN_APP_CONSUMABLE)
         }
@@ -154,7 +158,7 @@ class PremiumAccountFragment : Fragment() {
     private fun createPurchaseIntentReq(type: Int, productId: String?): PurchaseIntentReq? {
         val req = PurchaseIntentReq()
         req?.let {  productDetails ->
-            productDetails.productId=productId
+            productDetails.productId="foodapp"
             productDetails.priceType=type
             productDetails.developerPayload="test"
         }
@@ -173,11 +177,10 @@ class PremiumAccountFragment : Fragment() {
                     // Ödeme sonuçlarının imzasını doğrulayın.
                     // CipherUtil, imzaları doğrulamak için kullanılan özel bir sınıf
 
-
-                   // val success: Boolean = CipherUtil.doCheck(purchaseResultInfo.inAppPurchaseData, purchaseResultInfo.inAppDataSignature, resources.getString(R.string.publickey))
-                    if (true) {
+                    val success: Boolean = com.ayberk.foodapp.CipherUtil.doCheck(purchaseResultInfo.inAppPurchaseData, purchaseResultInfo.inAppDataSignature, resources.getString(R.string.publickey))
+                    if (success) {
                         // Ürün kullanıcıya başarıyla teslim edildiyse, consumeOwnedPurchase'ı çağırarak ürünü tüketin.
-                         purchaseResultInfo.inAppPurchaseData
+                        consumeOwnedPurchase(requireContext(), purchaseResultInfo.inAppPurchaseData)
                     } else {
                         Toast.makeText(requireContext(), "Ödeme başarılı, imza doğrulaması başarısız", Toast.LENGTH_SHORT).show()
                     }
@@ -199,5 +202,40 @@ class PremiumAccountFragment : Fragment() {
             }
             return
         }
+    }
+
+    private fun consumeOwnedPurchase(context: Context, inAppPurchaseData: String) {
+        Log.i(TAG, "call consumeOwnedPurchase")
+        val mClient = Iap.getIapClient(context)
+        val task = mClient.consumeOwnedPurchase(createConsumeOwnedPurchaseReq(inAppPurchaseData))
+        task.addOnSuccessListener { // Consume success
+            Log.i(TAG, "consumeOwnedPurchase success")
+            Toast.makeText(
+                context,
+                "Pay success, and the product has been delivered",
+                Toast.LENGTH_SHORT
+            ).show()
+        }.addOnFailureListener { e ->
+            Log.e(TAG, e.message.toString())
+            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+            if (e is IapApiException) {
+                val apiException = e
+                val returnCode = apiException.statusCode
+                Log.e(TAG, "consumeOwnedPurchase fail,returnCode: $returnCode")
+            } else {
+                // Other external errors
+            }
+        }
+    }
+    private fun createConsumeOwnedPurchaseReq(purchaseData: String): ConsumeOwnedPurchaseReq? {
+        val req = ConsumeOwnedPurchaseReq()
+        // Parse purchaseToken from InAppPurchaseData in JSON format.
+        try {
+            val inAppPurchaseData = InAppPurchaseData(purchaseData)
+            req.purchaseToken = inAppPurchaseData.purchaseToken
+        } catch (e: JSONException) {
+            Log.e(TAG, "createConsumeOwnedPurchaseReq JSONExeption")
+        }
+        return req
     }
 }
