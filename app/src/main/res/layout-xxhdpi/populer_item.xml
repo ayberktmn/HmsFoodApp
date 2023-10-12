@@ -7,9 +7,10 @@
 
     <LinearLayout
         android:layout_width="150dp"
-        android:layout_height="161dp"
+        android:layout_height="193dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:gravity="center|top"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,33 +18,40 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="108dp"
             app:cardCornerRadius="15dp">
 
             <ImageView
                 android:id="@+id/imgPopuler"
                 android:layout_width="150dp"
-                android:layout_height="109dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="1dp"
-                android:layout_marginTop="4dp"
+
                 android:layout_marginEnd="211dp"
                 android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/avatars" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:gravity="right"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imgFavorite"
-                android:layout_width="50dp"
-                android:layout_height="43dp"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
+                android:layout_marginTop="5dp"
                 android:foregroundGravity="right"
                 app:srcCompat="@drawable/like" />
-
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/txtPopler"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="TextView"
             android:textColor="#000000"
