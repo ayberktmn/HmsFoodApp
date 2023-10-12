@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.compose.runtime.currentCompositeKeyHash
 import androidx.core.graphics.green
 import androidx.fragment.app.viewModels
@@ -36,6 +37,7 @@ class FoodDescriptionFragment : Fragment() {
     lateinit var resultList : Meal
     private val viewModel : RandomFoodVM by viewModels()
     private var interstitialAd: InterstitialAd? = null
+    private var isBackPressed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +59,7 @@ class FoodDescriptionFragment : Fragment() {
         handler.postDelayed(object :Runnable{
             override fun run() {
                 loading.isDismiss()
+
             }
 
         },1200)
@@ -65,6 +68,10 @@ class FoodDescriptionFragment : Fragment() {
         // "testb4znbuh3n2" is a dedicated test ad unit ID. Before releasing your app, replace the test ad unit ID with the formal one.
         interstitialAd!!.adId = "testb4znbuh3n2"
         loadInterstitialAd()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            isBackPressed = true
+
+        }
         interstitialAd!!.adListener = adListener
         return view
     }
