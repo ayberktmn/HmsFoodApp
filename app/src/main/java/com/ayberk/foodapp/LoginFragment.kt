@@ -117,7 +117,7 @@ class LoginFragment : Fragment() {
 
         task.addOnSuccessListener { authAccount ->
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-            }
+        }
 
         task.addOnFailureListener { e ->
 

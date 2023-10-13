@@ -58,15 +58,6 @@ class ProfileFragment : Fragment() {
             val username = authAccount.displayName
             val photo = authAccount.avatarUri
 
-            if (authAccount.gender == Gender.MALE){
-                binding.txtGender.text = "Male"
-            }else if (authAccount.gender == Gender.FEMALE){
-                binding.txtGender.text = "Female"
-            }else{
-                binding.txtGender.text = "Unknow"
-            }
-
-
             Glide.with(binding.imgUser)
                 .load(photo)
                 .circleCrop()

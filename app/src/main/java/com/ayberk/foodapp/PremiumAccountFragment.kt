@@ -1,11 +1,9 @@
 package com.ayberk.foodapp
 
-import android.app.Activity
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,10 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.ayberk.foodapp.databinding.FragmentPremiumAccountBinding
-import com.ayberk.foodapp.databinding.FragmentProfileBinding
 import com.huawei.hmf.tasks.OnSuccessListener
 import com.huawei.hms.ads.AdParam
 import com.huawei.hms.ads.BannerAdSize
@@ -28,7 +24,6 @@ import com.huawei.hms.iap.entity.InAppPurchaseData
 import com.huawei.hms.iap.entity.OrderStatusCode
 import com.huawei.hms.iap.entity.ProductInfoReq
 import com.huawei.hms.iap.entity.PurchaseIntentReq
-import com.huawei.secure.android.common.encrypt.aes.CipherUtil
 import org.bouncycastle.asn1.pkcs.PKCSObjectIdentifiers.data
 import org.json.JSONException
 
@@ -36,7 +31,7 @@ class PremiumAccountFragment : Fragment() {
 
     private var _binding: FragmentPremiumAccountBinding? = null
     private val binding get() = _binding!!
-    private var PremiumHesap = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadProduct()
@@ -47,27 +42,22 @@ class PremiumAccountFragment : Fragment() {
     ): View? {
         _binding = FragmentPremiumAccountBinding.inflate(inflater, container, false)
         val view = binding.root
-
+        binding.btnPremium.isEnabled = false
         binding.btnPremium.setOnClickListener {
-            val productId: String = data?.id.toString()
-            gotoPay(this@PremiumAccountFragment, productId, IapClient.PriceType.IN_APP_CONSUMABLE)
+            gotoPay(this, "foodapp", IapClient.PriceType.IN_APP_CONSUMABLE)
+        }
+        binding.btnUye.setOnClickListener {
+            gotoPay(this,"premium1",IapClient.PriceType.IN_APP_CONSUMABLE)
         }
 
-        if (!PremiumHesap) {
-            // Reklam yükleme işlemi
-            binding.bannerView.adId = "testw6vs28auh3"
-            binding.bannerView.bannerAdSize = BannerAdSize.BANNER_SIZE_360_57
-            binding.bannerView.setBannerRefresh(60)
-            val adParam = AdParam.Builder().build()
-            binding.bannerView.loadAd(adParam)
-        } else {
-            // Premium hesap satın alındı, reklamları gizle veya kaldır
-            binding.bannerView.adId = "testw6vs28auh3"
-            binding.bannerView.bannerAdSize = BannerAdSize.BANNER_SIZE_360_57
-            binding.bannerView.setBannerRefresh(60)
-            val adParam = AdParam.Builder().build()
-           // binding.bannerView.loadAd(adParam)
-        }
+        // Set the ad unit ID and ad dimensions. "testw6vs28auh3" is a dedicated test ad unit ID.
+        binding.bannerView.adId = "testw6vs28auh3"
+        binding.bannerView.bannerAdSize = BannerAdSize.BANNER_SIZE_360_57
+        // Set the refresh interval to 60 seconds.
+        binding.bannerView.setBannerRefresh(60)
+        // Create an ad request to load an ad.
+        val adParam = AdParam.Builder().build()
+        binding.bannerView.loadAd(adParam)
 
         return view
     }
@@ -79,11 +69,10 @@ class PremiumAccountFragment : Fragment() {
         task.addOnSuccessListener { result ->
             if (result != null && !result.productInfoList.isEmpty()) {
                 val productInfo = result.productInfoList[0] // Assuming you have only one product in the list
+                val productInfo1 = result.productInfoList[1]
 
-                val price = productInfo.price
-
-                // Display the price in a TextView or any other UI element
-                displayPrice(price)
+                binding.txtPrice.text = productInfo.price
+                binding.txtUye.text = productInfo1.price
 
             }
         }.addOnFailureListener { e ->
@@ -114,14 +103,11 @@ class PremiumAccountFragment : Fragment() {
             // Pass in the item_productId list of products to be queried.
             // The product ID is the same as that you set during product information configuration in AppGallery Connect.
             productIds.add("foodapp")
+            productIds.add("premium1")
             productDetails.productIds = productIds
-
 
         }
         return req
-    }
-    private fun displayPrice(price: String) {
-        binding.txtPrice.text = price
     }
     private fun gotoPay(fragment: Fragment, productId: String?, type: Int) {
 
@@ -130,6 +116,7 @@ class PremiumAccountFragment : Fragment() {
         val task = mClient.createPurchaseIntent(createPurchaseIntentReq(type, productId))
         task.addOnSuccessListener(OnSuccessListener { result ->
             Log.i("IAP", "createPurchaseIntent, onSuccess")
+            Toast.makeText(requireContext(),"${productId}",Toast.LENGTH_SHORT).show()
             if (result == null) {
                 Log.e("IAP", "result is null")
                 return@OnSuccessListener
@@ -155,6 +142,7 @@ class PremiumAccountFragment : Fragment() {
             if (e is IapApiException) {
                 val returnCode = e.statusCode
                 Log.e("IAP", "createPurchaseIntent, returnCode: $returnCode")
+                Toast.makeText(requireContext(),"basarisiz",Toast.LENGTH_SHORT).show()
                 // Handle errors.
             } else {
                 // Other external errors.
@@ -165,9 +153,10 @@ class PremiumAccountFragment : Fragment() {
     private fun createPurchaseIntentReq(type: Int, productId: String?): PurchaseIntentReq? {
         val req = PurchaseIntentReq()
         req?.let {  productDetails ->
-            productDetails.productId="foodapp"
-            productDetails.priceType=type
-            productDetails.developerPayload="test"
+            productDetails.productId ="foodapp"
+            productDetails.productId ="premium1"
+            productDetails.priceType =type
+            productDetails.developerPayload ="test"
         }
         return req
     }
@@ -188,8 +177,6 @@ class PremiumAccountFragment : Fragment() {
                     if (success) {
                         // Ürün kullanıcıya başarıyla teslim edildiyse, consumeOwnedPurchase'ı çağırarak ürünü tüketin.
                         consumeOwnedPurchase(requireContext(), purchaseResultInfo.inAppPurchaseData)
-                        Toast.makeText(requireContext(), "Ödeme başarılı", Toast.LENGTH_SHORT).show()
-                        PremiumHesap = true
                     } else {
                         Toast.makeText(requireContext(), "Ödeme başarılı, imza doğrulaması başarısız", Toast.LENGTH_SHORT).show()
                     }
@@ -217,25 +204,30 @@ class PremiumAccountFragment : Fragment() {
         Log.i(TAG, "call consumeOwnedPurchase")
         val mClient = Iap.getIapClient(context)
         val task = mClient.consumeOwnedPurchase(createConsumeOwnedPurchaseReq(inAppPurchaseData))
-        task.addOnSuccessListener { // Consume success
+        task.addOnSuccessListener {
             Log.i(TAG, "consumeOwnedPurchase success")
             Toast.makeText(
                 context,
                 "Pay success, and the product has been delivered",
                 Toast.LENGTH_SHORT
             ).show()
+
+            // Ödeme başarılı olduğunda kullanıcıyı yönlendirin
+            // Örnek olarak, yeni bir aktivite başlatılabilir:
+          findNavController().navigate(R.id.action_premiumAccountFragment_to_homeFragment)
         }.addOnFailureListener { e ->
             Log.e(TAG, e.message.toString())
             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
             if (e is IapApiException) {
                 val apiException = e
                 val returnCode = apiException.statusCode
-                Log.e(TAG, "consumeOwnedPurchase fail,returnCode: $returnCode")
+                Log.e(TAG, "consumeOwnedPurchase fail, returnCode: $returnCode")
             } else {
                 // Other external errors
             }
         }
     }
+
     private fun createConsumeOwnedPurchaseReq(purchaseData: String): ConsumeOwnedPurchaseReq? {
         val req = ConsumeOwnedPurchaseReq()
         // Parse purchaseToken from InAppPurchaseData in JSON format.
