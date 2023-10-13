@@ -59,9 +59,7 @@ class FoodDescriptionFragment : Fragment() {
         handler.postDelayed(object :Runnable{
             override fun run() {
                 loading.isDismiss()
-
             }
-
         },1200)
 
         interstitialAd = InterstitialAd(requireContext())
