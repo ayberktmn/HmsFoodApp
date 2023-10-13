@@ -36,7 +36,7 @@ class PremiumAccountFragment : Fragment() {
 
     private var _binding: FragmentPremiumAccountBinding? = null
     private val binding get() = _binding!!
-
+    private var PremiumHesap = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadProduct()
@@ -53,14 +53,21 @@ class PremiumAccountFragment : Fragment() {
             gotoPay(this@PremiumAccountFragment, productId, IapClient.PriceType.IN_APP_CONSUMABLE)
         }
 
-        // Set the ad unit ID and ad dimensions. "testw6vs28auh3" is a dedicated test ad unit ID.
-        binding.bannerView.adId = "testw6vs28auh3"
-        binding.bannerView.bannerAdSize = BannerAdSize.BANNER_SIZE_360_57
-        // Set the refresh interval to 60 seconds.
-        binding.bannerView.setBannerRefresh(60)
-        // Create an ad request to load an ad.
-        val adParam = AdParam.Builder().build()
-        binding.bannerView.loadAd(adParam)
+        if (!PremiumHesap) {
+            // Reklam yükleme işlemi
+            binding.bannerView.adId = "testw6vs28auh3"
+            binding.bannerView.bannerAdSize = BannerAdSize.BANNER_SIZE_360_57
+            binding.bannerView.setBannerRefresh(60)
+            val adParam = AdParam.Builder().build()
+            binding.bannerView.loadAd(adParam)
+        } else {
+            // Premium hesap satın alındı, reklamları gizle veya kaldır
+            binding.bannerView.adId = "testw6vs28auh3"
+            binding.bannerView.bannerAdSize = BannerAdSize.BANNER_SIZE_360_57
+            binding.bannerView.setBannerRefresh(60)
+            val adParam = AdParam.Builder().build()
+           // binding.bannerView.loadAd(adParam)
+        }
 
         return view
     }
@@ -181,6 +188,8 @@ class PremiumAccountFragment : Fragment() {
                     if (success) {
                         // Ürün kullanıcıya başarıyla teslim edildiyse, consumeOwnedPurchase'ı çağırarak ürünü tüketin.
                         consumeOwnedPurchase(requireContext(), purchaseResultInfo.inAppPurchaseData)
+                        Toast.makeText(requireContext(), "Ödeme başarılı", Toast.LENGTH_SHORT).show()
+                        PremiumHesap = true
                     } else {
                         Toast.makeText(requireContext(), "Ödeme başarılı, imza doğrulaması başarısız", Toast.LENGTH_SHORT).show()
                     }
