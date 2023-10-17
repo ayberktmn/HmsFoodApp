@@ -79,7 +79,7 @@ class ProfileFragment : Fragment() {
             showCancelAuthorizationConfirmationDialog()
         }
         binding.btnPremiumFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_premiumAccountFragment)
+            findNavController().navigate(R.id.action_profileFragment_to_premiumActivity)
         }
         return view
     }

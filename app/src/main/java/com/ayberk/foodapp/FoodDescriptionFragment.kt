@@ -1,5 +1,6 @@
 package com.ayberk.foodapp
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.text.TextUtils.indexOf
@@ -41,6 +42,19 @@ class FoodDescriptionFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val sharedPref = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val isProductPurchased = sharedPref.getBoolean("isProductPurchased", false)
+// isProductPurchased, SharedPreferences'ten okunan değeri içerecektir
+
+        if (isProductPurchased){
+            Toast.makeText(requireContext(),"Premium hesap",Toast.LENGTH_SHORT).show()
+        }else{
+            interstitialAd = InterstitialAd(requireContext())
+            // "testb4znbuh3n2" is a dedicated test ad unit ID. Before releasing your app, replace the test ad unit ID with the formal one.
+            interstitialAd!!.adId = "testb4znbuh3n2"
+            loadInterstitialAd()
+            interstitialAd!!.adListener = adListener
+        }
 
     }
 
@@ -62,11 +76,7 @@ class FoodDescriptionFragment : Fragment() {
             }
         },1200)
 
-        interstitialAd = InterstitialAd(requireContext())
-        // "testb4znbuh3n2" is a dedicated test ad unit ID. Before releasing your app, replace the test ad unit ID with the formal one.
-        interstitialAd!!.adId = "testb4znbuh3n2"
-        loadInterstitialAd()
-        interstitialAd!!.adListener = adListener
+
         return view
     }
 
