@@ -7,13 +7,8 @@ import android.content.IntentSender
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import com.ayberk.foodapp.databinding.ActivityMainBinding
 import com.ayberk.foodapp.databinding.ActivityPremiumBinding
 import com.huawei.hmf.tasks.OnSuccessListener
 import com.huawei.hms.ads.AdParam
