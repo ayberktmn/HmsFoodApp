@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraitLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".ProfileFragment">
+
+    <Button
+        android:id="@+id/btnPremiumFragment"
+        android:layout_width="241dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="132dp"
+        android:drawableEnd="@drawable/premium32px"
+        android:text="@string/Premiumfragment"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtUserName" />
+
+    <TextView
+        android:id="@+id/txtUserName"
+        android:layout_width="139dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="@string/user_Name"
+        android:textColor="#FF0000"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgUser" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/ButtonStyle"
+        android:layout_width="165dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/borderbutton"
+        android:drawableEnd="@drawable/cancel"
+        android:text="@string/cancel_authorization"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.546"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignout" />
+
+    <Button
+        android:id="@+id/btnSignout"
+        style="@style/ButtonStyle"
+        android:layout_width="161dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="240dp"
+        android:background="@drawable/borderbutton"
+        android:drawableEnd="@drawable/cancelauth"
+        android:text="@string/sign_out"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPremiumFragment"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imgUser"
+        android:layout_width="111dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/person"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
