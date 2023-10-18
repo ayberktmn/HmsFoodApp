@@ -34,3 +34,7 @@ Used technologies:
 | --------------- | -------------------------------------------------------------- | --------------- | -------------------------------------------------------------- | --------------- | -------------------------------------------------------------- | --------------- | -------------------------------------------------------------- | --------------- | -------------------------------------------------------------- |
 | **Login Screen** | ![Screenshot_2023-10-17-13-58-59](https://github.com/ayberktmn/HmsFoodApp/assets/83671296/518ca41a-bb12-4a2d-856c-42c194c2ff0d)| **Profile Screen**  | ![Screenshot_2023-10-17-09-24-03](https://github.com/ayberktmn/HmsFoodApp/assets/83671296/f581dc85-c54a-4f36-958b-6e7902c3d3b6)| **Premıum Screen**   | ![Screenshot_2023-10-17-13-53-09](https://github.com/ayberktmn/HmsFoodApp/assets/83671296/6fa19738-4728-4f68-9552-684f8683727a)| **Map Screen**|![Screenshot_2023-10-17-09-28-15](https://github.com/ayberktmn/HmsFoodApp/assets/83671296/d4d4dcb2-acf3-43ee-be10-d6f158998b95) |**Push Screen**|![Screenshot_2023-10-18-10-25-19](https://github.com/ayberktmn/HmsFoodApp/assets/83671296/1c60fae5-a5c2-4dc8-a4a2-18888c08fd2e)|
 
+Hms Core Guide: https://developer.huawei.com/consumer/en/doc/development/hmscore-common-Guides/get-started-hmscore-0000001212585589
+
+Hms kits: https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/introduction-0000001050048870
+
