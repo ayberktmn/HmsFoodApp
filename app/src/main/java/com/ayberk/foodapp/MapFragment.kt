@@ -195,7 +195,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
             } else {
                 // Kullanıcı izinleri reddetti, bir mesaj göster
-                Toast.makeText(requireContext(), "İzinler reddedildi.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Permissions were denied.", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -205,7 +205,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         hMap = map
         hMap!!.isMyLocationEnabled = true
         getLocation()
-        Toast.makeText(requireContext(), "Harita Yükleniyor...", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Loading Map...", Toast.LENGTH_SHORT).show()
         hMap!!.uiSettings.isMyLocationButtonEnabled = true
 
 

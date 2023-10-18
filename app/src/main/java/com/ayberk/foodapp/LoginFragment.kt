@@ -105,7 +105,7 @@ class LoginFragment : Fragment() {
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             } else {
 
-                Toast.makeText(requireContext(),"Yanlis id:", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"Wrong id:", Toast.LENGTH_SHORT).show()
             }
         }
     }

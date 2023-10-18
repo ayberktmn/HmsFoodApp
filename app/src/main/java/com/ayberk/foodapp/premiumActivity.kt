@@ -48,12 +48,12 @@ class premiumActivity : AppCompatActivity() {
             // Ürün satın alındı, reklamları gizle veya premium özelliklere erişim sağla
             binding.bannerView.visibility = View.GONE
             binding.btnPremium.isEnabled = false
-            binding.textView6.text = "Premium uyesiniz!"
+            binding.textView6.text = "You are a Premium member!"
         } else {
             // Ürün satın alınmadı, reklamları göster ve premium özelliklere erişimi kapat
             binding.bannerView.visibility = View.VISIBLE
             binding.btnPremium.isEnabled = true
-            binding.textView6.text = "Reklamlardan kurtulmak icin premium satin alin"
+            binding.textView6.text = "Buy premium to get rid of ads"
             binding.btnPremium.setOnClickListener {
                 gotoPay(this@premiumActivity, "premium7", IapClient.PriceType.IN_APP_NONCONSUMABLE)
             }

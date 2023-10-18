@@ -111,11 +111,11 @@ class ProfileFragment : Fragment() {
 
       private fun showCancelAuthorizationConfirmationDialog() {
           val alertDialogBuilder = AlertDialog.Builder(requireContext())
-          alertDialogBuilder.setTitle("Cikis")
-          alertDialogBuilder.setMessage("Cikis yapmak istediğinize emin misiniz?")
+          alertDialogBuilder.setTitle("Exit")
+          alertDialogBuilder.setMessage("Are you sure you want to quit?")
           alertDialogBuilder.setIcon(R.drawable.huawei)
 
-          val NegativeButtonText = "Hayır"
+          val NegativeButtonText = "No"
           val NegativeButtonTextSpannable = SpannableString(NegativeButtonText)
           NegativeButtonTextSpannable.setSpan(
               ForegroundColorSpan(Color.RED), // Kırmızı renk
@@ -124,7 +124,7 @@ class ProfileFragment : Fragment() {
               0
           )
 
-          alertDialogBuilder.setPositiveButton("Evet") { _, _ ->
+          alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
               // İptal işlemi onaylandı
               cancelAuthorization()
               findNavController().navigate(R.id.action_profileFragment_to_loginFragment)

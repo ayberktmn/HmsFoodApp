@@ -54,11 +54,11 @@ class PopulerAdapter(meals: ArrayList<Meal>) : RecyclerView.Adapter<PopulerAdapt
             if (dataDao.checkIfDataExists(idMeal) > 0) {
                 // Veritabanında veri varsa, kaldıracak
                 dataDao.delete(Meal(idMeal, "", ""))
-                Toast.makeText(holder.itemView.context, "Favorilerden Kaldırıldı", Toast.LENGTH_SHORT).show()
+                Toast.makeText(holder.itemView.context, "Removed from Favorites", Toast.LENGTH_SHORT).show()
             } else {
                 // Veritabanında veri yoksa, ekleme yapılacak
                 dataDao.insert(Meal(idMeal, livedata!![position].strMeal, livedata!![position].strMealThumb))
-                Toast.makeText(holder.itemView.context, "Favorilere Eklendi", Toast.LENGTH_SHORT).show()
+                Toast.makeText(holder.itemView.context, "Added to Favorites", Toast.LENGTH_SHORT).show()
             }
             notifyDataSetChanged()
         }

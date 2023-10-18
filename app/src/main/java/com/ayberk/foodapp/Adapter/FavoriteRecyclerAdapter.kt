@@ -58,7 +58,7 @@ class FavoriteRecyclerAdapter(private val FavoriteFoodList:ArrayList<Meal>) : Re
             holder.binding.imgFavorite.setOnClickListener {
                 val favoriFood = FavoriteFoodList[position]
                 adventDao.delete(favoriFood)
-                Toast.makeText(holder.itemView.context, "Favorilerden Silindi", Toast.LENGTH_SHORT)
+                Toast.makeText(holder.itemView.context, "Deleted from Favorites", Toast.LENGTH_SHORT)
                     .show()
 
                 FavoriteFoodList.removeAt(position)

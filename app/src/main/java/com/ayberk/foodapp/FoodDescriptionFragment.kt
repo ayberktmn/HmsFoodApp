@@ -47,7 +47,7 @@ class FoodDescriptionFragment : Fragment() {
 // isProductPurchased, SharedPreferences'ten okunan değeri içerecektir
 
         if (isProductPurchased){
-            Toast.makeText(requireContext(),"Premium hesap",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),"Premium account",Toast.LENGTH_SHORT).show()
         }else{
             interstitialAd = InterstitialAd(requireContext())
             // "testb4znbuh3n2" is a dedicated test ad unit ID. Before releasing your app, replace the test ad unit ID with the formal one.
